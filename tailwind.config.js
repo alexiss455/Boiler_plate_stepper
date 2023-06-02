@@ -1,11 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        primary: "red",
+      },
+      textColor: {
+        textWhite: "white",
+      },
+      backgroundImage: {
+        "hero-pattern": "url('/img/hero-pattern.svg')",
+        "footer-texture": "url('/img/footer-texture.png')",
+      },
+    },
   },
   plugins: [],
-}
+};
