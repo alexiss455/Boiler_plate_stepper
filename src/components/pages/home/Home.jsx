@@ -11,6 +11,7 @@ export default function Home() {
   const [clickIndexActive, setclickIndexActive] = useState(-1);
   const [wait, setWait] = useState(false);
   const [check, setCheck] = useState(Array(obj.length).fill(false));
+  const empt = [];
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,7 +21,6 @@ export default function Home() {
     planPrice: 0,
     addOns: [],
   });
-  const empt = [];
   const choice = {
     arcade_MON: 9,
     advanced_MON: 12,
@@ -33,7 +33,6 @@ export default function Home() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const sleep = (m) => new Promise((r) => setTimeout(r, m));
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -169,7 +168,6 @@ export default function Home() {
 
   return (
     <div className="h-screen md:flex items-center justify-center mx-auto text-slate-800 max-md:bg-Magnolia">
-    
       <div className="flex flex-row max-md:flex-col max-md:w-full overflow-hidden md:border md:rounded-2xl ">
         <div className="md:p-4  h-full">
           <div

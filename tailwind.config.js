@@ -30,8 +30,8 @@ export default {
         Strawberry_red: 'hsl(354, 84%, 57%)',
       },
       backgroundImage: {
-        "sidebar": "url('images/bg-sidebar-desktop.svg')",
-        "mobile": "url('images/bg-sidebar-mobile.svg')",
+        "sidebar": "url('../images/bg-sidebar-desktop.svg')",
+        "mobile": "url('../images/bg-sidebar-mobile.svg')",
         "footer-texture": "url('/img/footer-texture.png')",
       },
       fontFamily: {
