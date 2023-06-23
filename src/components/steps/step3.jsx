@@ -1,6 +1,5 @@
 import Btn from "../reusableComponents/btn";
-import obj from "./stepObj";
-
+import { obj } from "./stepObj";
 export default function step3({
   prevStep,
   nextStep,

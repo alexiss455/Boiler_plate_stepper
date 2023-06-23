@@ -6,19 +6,9 @@ export default function step4({
   select,
   prevStep,
   wait,
+  totalPrice
 }) {
-  const planPrice = formData.planPrice;
-  const addOnsPrice = [];
 
-  formDataAddOns.forEach((element) => {
-    addOnsPrice.push(parseInt(element.price));
-  });
-  const totalPrice =
-    planPrice +
-    addOnsPrice.reduce(
-      (accumulator, currentValue) => accumulator + currentValue,
-      0
-    );
   return (
     <div className="flex flex-col justify-center w-full  text-Marine_blue bg-white rounded-lg p-4">
       <h1 className="text-5xl font-bold">Finishing up</h1>
@@ -39,7 +29,7 @@ export default function step4({
               <p className="text-Cool_gray font-thin">Change</p>
             </div>
             <p>
-              ${planPrice}
+              ${formData.planPrice}
               {select ? "/mo" : "/yr"}
             </p>
           </div>

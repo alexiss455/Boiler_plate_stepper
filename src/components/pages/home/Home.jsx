@@ -4,14 +4,17 @@ import Step2 from "../../steps/step2";
 import Step3 from "../../steps/step3";
 import Step4 from "../../steps/step4";
 import Success from "../../steps/success";
-import obj from "../../steps/stepObj";
+import { obj } from "../../steps/stepObj";
+import Sidebar from "../../steps/sidebar";
 export default function Home() {
+  const sleep = (m) => new Promise((r) => setTimeout(r, m));
   const [step, setStep] = useState(1);
   const [select, setIsSleceted] = useState(true);
   const [clickIndexActive, setclickIndexActive] = useState(-1);
   const [wait, setWait] = useState(false);
   const [check, setCheck] = useState(Array(obj.length).fill(false));
   const empt = [];
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,7 +23,9 @@ export default function Home() {
     planName: "",
     planPrice: 0,
     addOns: [],
+    totalPrice: 0,
   });
+
   const choice = {
     arcade_MON: 9,
     advanced_MON: 12,
@@ -33,7 +38,8 @@ export default function Home() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const sleep = (m) => new Promise((r) => setTimeout(r, m));
+
+  // for api submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setWait(true);
@@ -42,13 +48,13 @@ export default function Home() {
     console.log(formData);
   };
 
+  // step -+
   const nextStep = () => {
     setStep(step + 1);
   };
   const prevStep = () => {
     setStep(step - 1);
   };
-
   function handleYear() {
     setIsSleceted((prevValue) => !prevValue);
     setclickIndexActive(-1);
@@ -82,7 +88,6 @@ export default function Home() {
         empt.push(choice.pro_YR);
       }
     }
-
     const lastPick_For_Plan = empt[empt.length - 1];
     formData.planPrice = lastPick_For_Plan;
     if (select) {
@@ -111,6 +116,19 @@ export default function Home() {
     }));
     setCheck(newCheck);
   }
+
+  const planPrice = formData.planPrice;
+  const addOnsPrice = [];
+  addOnsData.forEach((element) => {
+    addOnsPrice.push(parseInt(element.price));
+  });
+  const totalPrice =
+    planPrice +
+    addOnsPrice.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0
+    );
+  formData.totalPrice = totalPrice;
   //-------------------------------End step3-----------------------------//
 
   const renderStep = () => {
@@ -123,7 +141,6 @@ export default function Home() {
             nextStep={nextStep}
           />
         );
-
       case 2:
         return (
           <Step2
@@ -157,6 +174,7 @@ export default function Home() {
             formData={formData}
             handleSubmit={handleSubmit}
             wait={wait}
+            totalPrice={totalPrice}
           />
         );
       case 5:
@@ -165,100 +183,11 @@ export default function Home() {
         return null;
     }
   };
-
   return (
     <div className="h-screen md:flex items-center justify-center mx-auto text-slate-800 max-md:bg-Magnolia">
       <div className="flex flex-row max-md:flex-col max-md:w-full overflow-hidden md:border md:rounded-2xl ">
-        <div className="md:p-4  h-full">
-          <div
-            className="md:bg-sidebar 
-            max-md:bg-cover
-            max-md:h-[200px]
-            max-md:bg-mobile bg-no-repeat  
-            md:bg-contain 
-            md:min-w-[274px]
-            md:min-h-[568px] text-white p-8"
-          >
-            <div className="flex flex-col gap-5 max-md:flex-row max-md:justify-center">
-              <div className="flex gap-6 items-center">
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center 
-                ${
-                  step >= 0
-                    ? " bg-Pastel_blue text-Marine_blue"
-                    : " outline outline-[1px] outline-gray-300"
-                }  font-bold`}
-                >
-                  1
-                </div>
-                <div className="text-Light_blue max-md:hidden">
-                  Step 1
-                  <div className="font-semibold tracking-[.15rem] text-white">
-                    YOUR INFO
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-6 items-center">
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center 
-                   ${
-                     step >= 2
-                       ? " bg-Pastel_blue text-Marine_blue"
-                       : " outline outline-[1px] outline-gray-300"
-                   }  font-bold`}
-                >
-                  2
-                </div>
-                <div className="text-Light_blue max-md:hidden">
-                  Step 2
-                  <div className="font-semibold tracking-[.15rem] text-white">
-                    SELECT PLAN
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-6 items-center">
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center 
-                   ${
-                     step >= 3
-                       ? " bg-Pastel_blue text-Marine_blue"
-                       : " outline outline-[1px] outline-gray-300"
-                   }  font-bold`}
-                >
-                  3
-                </div>
-                <div className="text-Light_blue max-md:hidden">
-                  Step 3
-                  <div className="font-semibold tracking-[.15rem] text-white">
-                    ADD ONS
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-6 items-center">
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center 
-                   ${
-                     step >= 4
-                       ? " bg-Pastel_blue text-Marine_blue"
-                       : " outline outline-[1px] outline-gray-300"
-                   }  font-bold`}
-                >
-                  4
-                </div>
-                <div className="text-Light_blue max-md:hidden">
-                  Step 4
-                  <div className="font-semibold tracking-[.15rem] text-white">
-                    SUMMARY
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="md:px-6 max-md:px-4 max-md:pb-12 flex items-center w-full md:pr-10  max-md:-mt-[6.5rem]">
+        <Sidebar step={step} />
+        <div className="md:px-6 max-md:px-4 flex items-center w-full md:pr-10  max-md:-mt-[6.5rem]">
           {renderStep()}
         </div>
       </div>

@@ -1,28 +1,5 @@
 import Btn from "../reusableComponents/btn";
-import iconA from "../../../images/icon-arcade.svg";
-import iconAd from "../../../images/icon-advanced.svg";
-import iconPro from "../../../images/icon-pro.svg";
-
-const newOgj = [
-  {
-    img1: iconA,
-    planNmae: "Arcade",
-    monthly: "$9/mon",
-    yearly: "$90/yr",
-  },
-  {
-    img1: iconAd,
-    planNmae: "Advanced",
-    monthly: "$12/mon",
-    yearly: "$120/yr",
-  },
-  {
-    img1: iconPro,
-    planNmae: "Pro",
-    monthly: "$15/mon",
-    yearly: "$150/yr",
-  },
-];
+import { newOgj } from "./stepObj";
 
 export default function step2({
   nextStep,
@@ -41,19 +18,19 @@ export default function step2({
       </p>
 
       <form className="flex flex-col gap-3 mt-8 font-bold">
-        <div className="flex gap-4">
+        <div className="flex gap-4 max-md:flex-col">
           {newOgj.map((item, index) => (
             <div
               key={index}
               onClick={() => handleClick(index)}
-              className={`w-full p-4 rounded-lg border cursor-pointer ${
+              className={`w-full p-4 rounded-lg border cursor-pointer max-md:flex items-center gap-8 ${
                 clickIndexActive === index
                   ? "outline outline-[2px] outline-slate-800 bg-Magnolia"
                   : ""
               }`}
             >
               <img src={item.img1} />
-              <div className="mt-10">
+              <div className="md:mt-10">
                 {item.planNmae}
                 <p className="text-Cool_gray font-thin">
                   {select ? item.monthly : item.yearly}
@@ -86,17 +63,25 @@ export default function step2({
         <div className={` ${select ? "text-Cool_gray" : ""} `}> Yearly</div>
       </div>
 
-      <div className=" 
+      <div
+        className=" 
       max-md:w-full 
       max-md:h-[4rem] 
       max-md:fixed bg-white bottom-0 left-0 
-      px-6 flex items-center justify-between">
+      px-6 flex items-center justify-between"
+      >
         <Btn
           handleClick={prevStep}
           name={"Go back"}
-          className={"bg-transparent text-slate-950 font-bold  max-md:-translate-y-[1rem]"}
+          className={
+            "bg-transparent text-slate-950 font-bold  max-md:-translate-y-[1rem]"
+          }
         />
-        <Btn handleClick={nextStep} name={"Next"} className="text-white max-md:-translate-y-[1rem]" />
+        <Btn
+          handleClick={nextStep}
+          name={"Next"}
+          className="text-white max-md:-translate-y-[1rem]"
+        />
       </div>
     </div>
   );
