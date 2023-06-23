@@ -3,7 +3,7 @@ export default function Header() {
   return (
     <div className="border-b  bg-yellow-50 bg-opacity-[.1]">
       <div className="h-14 flex items-center justify-between max-w-7xl mx-auto">
-        <div className="font-Kanit text-[1.6rem]">tailwindcss</div>
+        <div className="font-Kanit text-[1.6rem]">CutiePiesszz</div>
 
         <div>
           <ul className="flex gap-[1rem] font">

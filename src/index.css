@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,5 +7,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#shad{
+  box-shadow: 1px 1px 7px 2px rgba(0,0,0,0.56);
+  -webkit-box-shadow: 1px 1px 7px 2px rgba(0,0,0,0.56);
+  -moz-box-shadow: 1px 1px 7px 2px rgba(0,0,0,0.56);
 }
