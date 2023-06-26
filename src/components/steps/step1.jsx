@@ -33,7 +33,6 @@ export default function step1({
           placeholder="Name"
           name="name"
           required
-          
         />
 
         <div className="flex justify-between ">

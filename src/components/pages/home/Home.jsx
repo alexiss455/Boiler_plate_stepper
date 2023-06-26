@@ -171,7 +171,7 @@ export default function Home() {
             req1={req1}
             req2={req2}
             handleSubmit={handleSubmit}
-            
+
           />
         );
       case 2:
@@ -218,7 +218,7 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen md:flex items-center justify-center mx-auto text-slate-800 max-md:bg-Magnolia">
+    <div className="md:mt-[5%] md:flex items-center justify-center mx-auto text-slate-800 max-md:bg-Magnolia">
       <div className="flex flex-row max-md:flex-col max-md:w-full overflow-hidden md:border md:rounded-2xl ">
         <Sidebar step={step} />
         <div className="md:px-6 max-md:px-4 flex items-center w-full md:pr-10  max-md:-mt-[6.5rem] max-md:mb-[6rem]">
