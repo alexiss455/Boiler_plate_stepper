@@ -20,6 +20,7 @@ export default function step4({
         onSubmit={handleSubmit}
         className="flex flex-col gap-3 mt-8 font-bold "
       >
+      
         <div className="p-4 bg-Magnolia rounded-lg">
           <div className="flex justify-between items-center border-b pb-6">
             <div>
@@ -48,9 +49,9 @@ export default function step4({
         </div>
 
         <div className="flex justify-between items-center p-4">
-          <p className="text-Cool_gray font-thin">Total (per year)</p>
+          <p className="text-Cool_gray font-thin">Total (per{select ? "/mo" : "/yr"})</p>
           <p className="text-Marine_blue font-semibold text-[1.75rem]">
-            +${totalPrice}/yr
+            +${totalPrice}{select ? "/mo" : "/yr"}
           </p>
         </div>
         <div

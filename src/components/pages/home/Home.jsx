@@ -13,6 +13,7 @@ export default function Home() {
   const [clickIndexActive, setclickIndexActive] = useState(-1);
   const [wait, setWait] = useState(false);
   const [check, setCheck] = useState(Array(obj.length).fill(false));
+
   const empt = [];
 
   const [formData, setFormData] = useState({
@@ -25,7 +26,6 @@ export default function Home() {
     addOns: [],
     totalPrice: 0,
   });
-
   const choice = {
     arcade_MON: 9,
     advanced_MON: 12,
@@ -36,7 +36,8 @@ export default function Home() {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const actrui = e.target.getAttribute("name");
+    setFormData({ ...formData, [actrui]: e.target.value });
   };
 
   // for api submit
@@ -49,9 +50,37 @@ export default function Home() {
   };
 
   // step -+
-  const nextStep = () => {
-    setStep(step + 1);
+  const [req, setReq] = useState(false);
+  const [req1, setReq1] = useState(false);
+  const [req2, setReq2] = useState(false);
+
+  const nextStep = (e) => {
+    e.preventDefault();
+
+    if (formData.name == "") {
+      setReq(true);
+    } else{
+      setReq(false)
+    }
+
+    if (formData.email == "") {
+      setReq1(true);
+    } else{
+      setReq1(false)
+    }
+
+
+    if (formData.number == "") {
+      setReq2(true);
+    } else{
+      setReq2(false)
+    }
+
+    if(formData.name && formData.email && formData.number != null){
+      setStep( step + 1)
+    }
   };
+
   const prevStep = () => {
     setStep(step - 1);
   };
@@ -116,7 +145,6 @@ export default function Home() {
     }));
     setCheck(newCheck);
   }
-
   const planPrice = formData.planPrice;
   const addOnsPrice = [];
   addOnsData.forEach((element) => {
@@ -139,6 +167,11 @@ export default function Home() {
             formData={formData}
             handleChange={handleChange}
             nextStep={nextStep}
+            req={req}
+            req1={req1}
+            req2={req2}
+            handleSubmit={handleSubmit}
+            
           />
         );
       case 2:
@@ -183,11 +216,12 @@ export default function Home() {
         return null;
     }
   };
+
   return (
     <div className="h-screen md:flex items-center justify-center mx-auto text-slate-800 max-md:bg-Magnolia">
       <div className="flex flex-row max-md:flex-col max-md:w-full overflow-hidden md:border md:rounded-2xl ">
         <Sidebar step={step} />
-        <div className="md:px-6 max-md:px-4 flex items-center w-full md:pr-10  max-md:-mt-[6.5rem]">
+        <div className="md:px-6 max-md:px-4 flex items-center w-full md:pr-10  max-md:-mt-[6.5rem] max-md:mb-[6rem]">
           {renderStep()}
         </div>
       </div>
